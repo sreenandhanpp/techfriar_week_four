@@ -7,7 +7,7 @@ module.exports = [
     // Validate fullname
   body('fullname')
   .notEmpty()
-  .withMessage('Fullname is required'),
+  .withMessage('Full name is required'),
 
 // Validate username
 body('username')
@@ -39,7 +39,14 @@ body('phone')
   .notEmpty()
   .withMessage('Phone number is required')
   .isMobilePhone()
-  .withMessage('Invalid phone number'),
+  .withMessage('Invalid phone number')
+  .custom(async (value) => {
+    const user = await User.findOne({ phone: value });
+    if (user) {
+      throw new Error('Phone is already exists');
+    }
+    return true;
+  }),
 
 // Validate email
 body('email')

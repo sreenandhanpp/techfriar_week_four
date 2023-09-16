@@ -384,3 +384,10 @@ button:hover{
     justify-content: center;
     font-family: 'Courier New', Courier, monospace;
 }
+.err{
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    color:rgba(212, 0, 0, 0.829);
+}
