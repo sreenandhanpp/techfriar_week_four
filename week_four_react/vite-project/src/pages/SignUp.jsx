@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react'
 import axios from 'axios'
 import { Link, Navigate, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { USER } from '../redux/constants/user';
 import ErrAlert from '../../components/ErrAlert';
+import Loading from '../../components/Loading';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -15,7 +16,9 @@ const SignUp = () => {
   const [phone, setPhone] = useState('');
   const [err, setErr] = useState([]);
   const dispatch = useDispatch();
-
+  const [isLoading ,setIsLoading] = useState(false);
+  const { loading } = useSelector(state=>state.userData);
+ 
   const SubmitHandler = async (e) => {
     e.preventDefault();
     console.log("submit")
@@ -56,9 +59,12 @@ const SignUp = () => {
     }
   }
   return (
-    
-    <div className='edit-body'>
-      
+   
+      loading? <Loading />
+      :
+
+     (
+       <div className='edit-body'>      
       <div className="container">
         <form id="form" className="form">
           <h2>Create Account !</h2>
@@ -139,6 +145,7 @@ const SignUp = () => {
 
 
     </div>
+     )
   )
 }
 

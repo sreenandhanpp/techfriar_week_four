@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { USER } from '../redux/constants/user';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import ErrAlert from '../../components/ErrAlert';
+import Loading from '../../components/Loading';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -12,6 +13,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [err, setErr] = useState([]);
+  const { loading } = useSelector(state=>state.login);
   
   const SubmitHandler = (e) => {
     e.preventDefault();
@@ -51,6 +53,9 @@ const Login = () => {
     }
   }
   return (
+
+  loading? <Loading />
+  :
     <div className='edit-body'>
     <div className="container">
         <form id="form" className="form">

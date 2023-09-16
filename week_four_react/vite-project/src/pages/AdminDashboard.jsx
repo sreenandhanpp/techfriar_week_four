@@ -2,19 +2,22 @@ import React, { useEffect, useState } from 'react'
 import Logout from '../../components/Logout'
 import Navbar from '../../components/Navbar'
 import { ADMIN } from '../redux/constants/admin';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Loading from '../../components/Loading';
 
 
 const AdminDashboard = () => {
     const [users, setUsers] = useState([]);
     const dispatch = useDispatch();
+    const { loading } = useSelector(state => state.Users);
+
     useEffect(() => {
         try {
             dispatch({ type: ADMIN.FETCH_USERS_REQUEST });
             axios.get('http://localhost:5000/admin/api/dashboard').then(res => {
-                const newData= res.data.filter(obj => obj.isAdmin !== true);
+                const newData = res.data.filter(obj => obj.isAdmin !== true);
                 console.log(newData);
                 setUsers(newData)
                 if (res.status == 200) {
@@ -46,15 +49,17 @@ const AdminDashboard = () => {
         }
     }
     return (
+        loading? <Loading />
+        :
         <div>
             <Navbar />
             <div>
                 <div className="create-btn-container">
                     <div className="inner-div">
 
-                   <Link to={'/create-user'}>
-                   <button className='create-user'> Create</button>
-                   </Link> 
+                        <Link to={'/create-user'}>
+                            <button className='create-user'> Create</button>
+                        </Link>
                     </div>
                 </div>
                 <h2>USERS</h2>
