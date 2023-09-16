@@ -3,6 +3,7 @@ import React, { useDebugValue, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { ADMIN } from '../redux/constants/admin';
 import { useDispatch } from 'react-redux';
+import ErrAlert from '../../components/ErrAlert';
 
 const CreateUser = () => {
     const dispatch = useDispatch();
@@ -14,14 +15,14 @@ const CreateUser = () => {
     const [phone, setPhone] = useState('');
     const [password ,setPassword] = useState('');
     const {id} = useParams();
-    const [values ,setValues] = useState({
-        id:id,
-        username:'',
-        email:'',
-        address:'',
-        fullname:'',
-        phone:''
-    });
+    // const [values ,setValues] = useState({
+    //     id:id,
+    //     username:'',
+    //     email:'',
+    //     address:'',
+    //     fullname:'',
+    //     phone:''
+    // });
 
     const SubmitHandler = async (e) => {
         e.preventDefault();
