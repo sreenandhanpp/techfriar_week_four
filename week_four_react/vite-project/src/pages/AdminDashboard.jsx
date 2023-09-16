@@ -14,10 +14,11 @@ const AdminDashboard = () => {
         try {
             dispatch({ type: ADMIN.FETCH_USERS_REQUEST });
             axios.get('http://localhost:5000/admin/api/dashboard').then(res => {
-
-                setUsers(res.data)
+                const newData= res.data.filter(obj => obj.isAdmin !== true);
+                console.log(newData);
+                setUsers(newData)
                 if (res.status == 200) {
-                    dispatch({ type: ADMIN.FETCH_USERS_SUCCESS, payload: res.data });
+                    dispatch({ type: ADMIN.FETCH_USERS_SUCCESS, payload: newData });
                 } else {
                     dispatch({ type: ADMIN.FETCH_USERS_FAILED, error: res.error });
                 }
