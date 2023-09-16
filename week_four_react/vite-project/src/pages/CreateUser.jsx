@@ -58,11 +58,12 @@ const CreateUser = () => {
                         <label htmlFor="username">Full name</label>
                         <input
                             type="text" id="fullname"
-                            placeholder="Enter username"
+                            placeholder="Enter fullname"
                             name='fullname'
                             // value={fullname}
                             onChange={(e) => setfullname(e.target.value)}
                              />
+                             <ErrAlert errors={err} label={'fullname'} />
                     </div>
                     <div className="form-control">
                         <label htmlFor="username">Username</label>
@@ -73,6 +74,7 @@ const CreateUser = () => {
                             // value={username}
                             onChange={(e) => setUsername(e.target.value)}
                         />
+                        <ErrAlert errors={err} label={'username'} />
                     </div>
                     <div className="form-control">
                         <label htmlFor="email">Email</label>
@@ -84,31 +86,31 @@ const CreateUser = () => {
                             // value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
-
+                        <ErrAlert errors={err} label={'email'} />
                     </div>
                     <div className="form-control">
                         <label htmlFor="address">Address</label>
                         <input
                             type="text"
                             id="address"
-                            placeholder="Enter username"
+                            placeholder="Enter address"
                             name='address'
                             // value={address}
                             onChange={(e) => setAddress(e.target.value)}
                         />
-
+                        <ErrAlert errors={err} label={'address'} />
                     </div>
                     <div className="form-control">
                         <label htmlFor="phone">Phone</label>
                         <input
                             type="text"
                             id="phone"
-                            placeholder="Enter username"
+                            placeholder="Enter phone"
                             name='phone'
                             // value={phone}
                             onChange={(e) => setPhone(e.target.value)}
                         />
-
+                        <ErrAlert errors={err} label={'phone'} />
                     </div>
                     <div className="form-control">
                         <label htmlFor="password">Password</label>
@@ -118,7 +120,7 @@ const CreateUser = () => {
                             placeholder="Enter password"
                             onChange={(e) => setPassword(e.target.value)}
                         />
-
+                        <ErrAlert errors={err} label={'password'} />
                     </div>
                     <button onClick={SubmitHandler} type="submit">Update</button>
                 </form>

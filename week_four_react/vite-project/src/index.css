@@ -356,6 +356,7 @@ button:hover{
     display: flex;
     justify-content: center;
     color: rgba(35, 14, 230, 0.548);
+    margin-top: 10px;
 }
 
 /* user home page */

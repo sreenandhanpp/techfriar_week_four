@@ -5,6 +5,7 @@ const router = express.Router();
 const signupValidate = require('../middlewares/signupValidator');
 const { validationResult } = require('express-validator');
 const isExist = require('../middlewares/checkMail');
+const loginValidator = require('../middlewares/loginValidator');
 
 
 
@@ -41,16 +42,21 @@ router.post('/api/signup',signupValidate, async (req, res) => {
 });
 
 //post login route for login form submition
-router.post('/api/login', (req, res) => {
-    try {
-        userHelper.doLogin(req.body).then((data) => {
-            req.session.user = data;
-            res.json(data).status(200);
-        }).catch(err => {
-            res.status(400).json({ message: "Invalid username or password" });
-        })
-    } catch (err) {
-        res.status(401).json({ message: 'Something went wrong' });
+router.post('/api/login',loginValidator, (req, res) => {
+    let err = validationResult(req);
+    if(!err.isEmpty()){
+        res.status(400).json({errors:err.array()})
+    }else{
+        try {
+            userHelper.doLogin(req.body).then((data) => {
+                req.session.user = data;
+                res.json(data).status(200);
+            }).catch(err => {
+                res.status(400).json({ error: "Incorrect username or password" });
+            })
+        } catch (err) {
+            res.status(401).json({ message: 'Something went wrong' });
+        }
     }
 });
 

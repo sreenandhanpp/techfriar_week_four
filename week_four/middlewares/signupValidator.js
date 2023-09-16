@@ -60,7 +60,7 @@ body('email')
     throw new Error('Email already exists');
   }
   return true;
-}),
+})
     
     // .custom((value,{req}) => {
     //     if (value !== req.body.confirmPass) {
