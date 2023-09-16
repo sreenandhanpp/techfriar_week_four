@@ -21,6 +21,8 @@ module.exports = {
                     username: data.username,
                     email: data.email,
                     isAdmin: false,
+                    address: data.address,
+                    phone: data.phone,
                     token: generateToken(data)
                 };
                 resolve(userData);
@@ -42,6 +44,8 @@ module.exports = {
                             username: user.username,
                             email: user.email,
                             isAdmin: user.isAdmin,
+                            address: user.address,
+                            phone: user.phone,
                             token: generateToken(user)
                         }
                         resolve(data);

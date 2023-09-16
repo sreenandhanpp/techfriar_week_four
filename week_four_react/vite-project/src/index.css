@@ -357,3 +357,30 @@ button:hover{
     justify-content: center;
     color: rgba(35, 14, 230, 0.548);
 }
+
+/* user home page */
+
+.profile-container{
+    height: auto;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 60vh;
+}
+.details{
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content h1{
+    display: flex;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+.content h3{
+    display: flex;
+    justify-content: center;
+    font-family: 'Courier New', Courier, monospace;
+}
